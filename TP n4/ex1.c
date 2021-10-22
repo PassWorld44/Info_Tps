@@ -47,7 +47,17 @@ int main()
 		//le score correspond aux scores multiplies entre eux
 		escalade[i].total = escalade[i].bloc * escalade[i].vitesse * escalade[i].difficulte;
 	}
-	
+
+	printf("SCORES ESCALADE\n");
+	printf("---------------\n");
+	printf("\n");
+    affichage(escalade);
+
+    tri(escalade); //mise en place du classement
+
+    printf("SCORES ESCALADE : CLASSEMENT\n");
+    printf("----------------------------\n");
+    printf("\n");
     affichage(escalade);
 
 	return 0;
@@ -55,10 +65,7 @@ int main()
 
 void affichage(grimpeur liste[5])
 {
-	printf("SCORES ESCALADE\n");
-	printf("---------------\n");
-	printf("\n");
-
+	
 	//affichage d'un des gimpeurs dans un tableau
 	printf("%-20s%-20sNat \tBloc \tVit \tDif \tTotal\n", "Nom", "Premon");
 	for(int i = 0; i < 5; i++)
@@ -75,12 +82,15 @@ void affichage(grimpeur liste[5])
 
 void tri(grimpeur liste[5])
 {
+    grimpeur aux;
+    int j;
+    
 	for(int i = 0; i < 5; i++)
 	{
-		grimpeur aux = liste[i];
-		j = i;
-		//tric selon le total des points
-		while(j > 0 && liste[j - 1].vitesse > aux.vitesse)
+	    aux = liste[i];
+	    j = i;
+		//tri selon le total des points
+		while(j > 0 && liste[j - 1].total < aux.total)
 		{
 			liste[j] = liste[j - 1];
 			j--;
