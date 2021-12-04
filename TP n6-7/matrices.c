@@ -15,7 +15,7 @@ void remplitMatriceAlea (int** matrice, int nb_lignes, int nb_colonnes);
 void afficheMatrice (int** matrice, int nb_lignes, int nb_colonnes);
 void matriceSerpent (int** matrice, int taille_cote);
 
-int** transpose(int** matrice) //TODO
+int** transpose(int** matrice, int nb_lignes, int nb_colonnes); //TODO
 
 int mini = 0, maxi = 100;
 //c'est moche mais c'est demande, rip les var globales
@@ -44,17 +44,30 @@ int main()
 	}
 	else
 	{
-		remplitMatriceAlea()
+		remplitMatriceAlea(matrice, nb_lignes, nb_colonnes);
 	}
 
 	printf("\n");
 	afficheMatrice(matrice, nb_lignes, nb_colonnes);
 
+	//on transpose la matrice
+	int** transposee = transpose(matrice, nb_lignes, nb_colonnes);
+
+	printf("\n");
+	afficheMatrice(transposee, nb_colonnes, nb_lignes);
+
+	//on libere bien les variables allouees dynamiquement
 	for(int i = 0; i < nb_colonnes; i++)
 	{
 		free(matrice[i]);
 	}
 	free(matrice);
+
+	for(int i = 0 ; i < nb_lignes; i++)
+	{
+		free(transposee[i]);
+	}
+	free(transposee);
 
 	return 0;
 }
@@ -99,4 +112,29 @@ void matriceSerpent (int** matrice, int taille_cote)
 			}
 		}
 	}
+}
+
+int** transpose(int** matrice_d, int nb_lignes, int nb_colonnes)
+// valeur de retour : allouee dynamiquement, necessite de free
+// tableau de tableau de dimentions inversee par rapport a celles donees
+{
+	int** transposee;
+
+	//on doit la malloc car invertion des dimentions
+	transposee = (int**)malloc(nb_lignes * sizeof(int*));
+	for(int i = 0; i < nb_colonnes; i++)
+	{
+		transposee[i] = malloc(nb_colonnes * sizeof(int));
+	}
+
+	//affectation des valeurs de l'ancienne matrice
+	for(int i = 0; i < nb_lignes; i++)
+	{
+		for(int j = 0; j < nb_colonnes ; j++)
+		{
+			transposee[i][j] = matrice_d[j][i];
+		}
+	}
+
+	return transposee;
 }
