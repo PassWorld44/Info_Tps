@@ -18,9 +18,14 @@ typedef struct liste_simplement_chainee
 
 noeud* cree_element(int valeur);
 void detruire_element(noeud* n);
+
 void detruire_liste_chainee(listeChainee* liste);
 listeChainee* initialisation(int valeur);
+
 void afficher(listeChainee* liste);
-noeud* acceder_element(int indice);
+
+noeud* acceder_element(listeChainee* liste, int indice);
+int insere_noeud(listeChainee* liste, int indice, noeud* element);
+int suppr_noeud(listeChainee* liste, int indice);
 
 #endif

@@ -17,6 +17,8 @@ noeud* cree_element(int valeur)
 }
 
 void detruire_element(noeud* n)
+//Attention : cette fonction detruit aussi les noeuds 
+//	avec lequels elle est liée
 {
 	if(n->suivant)
 	{
@@ -67,14 +69,14 @@ void afficher(listeChainee* liste)
 	printf("]\n");
 }
 
-noeud* acceder_element(int indice)
+noeud* acceder_element(listeChainee* liste, int indice)
 //si l'indice n'est pas accessible, on retournera NULL
 {
 	noeud* aux = liste->premier_element;
 
 	for(int i = 0; i < indice; i++)
 	{
-		if(aux->suivant = NULL)
+		if(aux->suivant == NULL)
 		{
 			//on a pas trouve l'element pointe
 			return NULL;
@@ -82,4 +84,53 @@ noeud* acceder_element(int indice)
 		aux = aux->suivant;
 	}
 	return aux;
+}
+
+int insere_noeud(listeChainee* liste, int indice, noeud* elem)
+//val de retour : -1 si l'insertion a echouee
+//				  0 si l'insertion a ete effectuee avec succes
+{
+	noeud* it = acceder_element(liste, indice - 1);
+
+	if(it == NULL)
+	{
+		return -1;
+	}
+	
+	elem->suivant = it->suivant;
+	it->suivant = elem;
+
+	return 0;
+}
+
+int suppr_noeud(listeChainee* liste, int indice)
+//val de retour : -1 si l'insertion a echouee
+//				  0 si l'insertion a ete effectuee avec succes
+{
+	noeud** precedent;
+	noeud* elem;
+
+	//il faut aussi changer le pointeur qui va vers
+	//l'element a supprimer
+	if(indice - 1 >= 0)
+	{
+		precedent = &acceder_element(liste, indice-1)->suivant;
+	}
+	else
+	{
+		precedent = &(liste->premier_element);
+	}
+
+	elem = *precedent;
+
+	if(elem == NULL)
+	{
+		return -1;
+	}
+
+	*precedent = elem->suivant;
+
+	free(elem);
+
+	return 0;
 }
