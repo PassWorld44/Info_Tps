@@ -11,18 +11,26 @@ listes chainees
 
 int main()
 {
-	listeChainee* liste;
+	listeChainee *liste, *liste2;
 
 	liste = initialisation(42);
-	afficher(liste);
+	afficher(*liste);
 
 	insere_noeud(liste, 1, cree_element(17));
 	insere_noeud(liste, 2, cree_element(14));
 	insere_noeud(liste, 1, cree_element(4));
-	afficher(liste);
+	afficher(*liste);
 
 	suppr_noeud(liste, 2);
-	afficher(liste);
+	afficher(*liste);
+	printf("taille : %d\n", longueur_liste(*liste));
+	printf("indice du 14 : %d\n", 
+			recherche_valeur(*liste, 14));
+	printf("indice du 18 : %d\n", 
+			recherche_valeur(*liste, 18));
+
+	copie_liste(*liste, liste2);
+	afficher(*liste2);
 
 	detruire_liste_chainee(liste);
 

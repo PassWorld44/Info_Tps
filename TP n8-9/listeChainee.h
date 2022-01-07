@@ -17,12 +17,16 @@ typedef struct liste_simplement_chainee
 }listeChainee;
 
 noeud* cree_element(int valeur);
-void detruire_element(noeud* n);
+void detruire_element(noeud *n);
+noeud* copie_element(noeud *n);
 
 void detruire_liste_chainee(listeChainee* liste);
 listeChainee* initialisation(int valeur);
+int copie_liste(listeChainee lst, listeChainee *copie);
 
-void afficher(listeChainee* liste);
+void afficher(listeChainee liste);
+int longueur_liste(listeChainee lst);
+int recherche_valeur(listeChainee liste, int valeur);
 
 noeud* acceder_element(listeChainee* liste, int indice);
 int insere_noeud(listeChainee* liste, int indice, noeud* element);
