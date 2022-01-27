@@ -3,6 +3,7 @@ TP8-9
 Emile BONDU
 17/12/2021
 listes chainees
+code de test des differentes fonctions
 */
 
 #include <stdio.h>
@@ -29,10 +30,13 @@ int main()
 	printf("indice du 18 : %d\n", 
 			recherche_valeur(*liste, 18));
 
+	liste2 = (listeChainee*)malloc(sizeof(listeChainee));
+
 	copie_liste(*liste, liste2);
 	afficher(*liste2);
 
 	detruire_liste_chainee(liste);
+	detruire_liste_chainee(liste2);
 
 	return 0;
 }

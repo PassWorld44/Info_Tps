@@ -1,3 +1,11 @@
+/*
+TP 8-9
+Emile BONDU
+17/12/2021
+listes chainees
+cette en-tete (avec le .h lié) est indépendant et peut etre réutilisé
+*/
+
 #include "listeChainee.h"
 
 noeud* cree_element(int valeur)
@@ -64,32 +72,29 @@ listeChainee* initialisation(int valeur)
 }
 
 int copie_liste(listeChainee liste, listeChainee *copie)
-//retourne NULL si echec de creation de la liste
-//retourne -1 si echec de copie des differents elements
-// -> la liste peut y etre tronquée
+//PRE-CONDITION : copie a besoin d'etre crée avant la fonction
+//VALEURS DE RETOUR :
+//	retourne 0  si la copie est reussie
+//	retourne -1 si echec de copie des differents elements
+//		 -> la liste peut y etre tronquée
 {
 	noeud* aux = liste.premier_element;
 	noeud** next = NULL;
 
-	copie = (listeChainee*)malloc(sizeof(listeChainee));
+	next = &copie->premier_element;
 
-	if(copie != NULL)
+	while(aux != NULL)
 	{
-		next = &liste.premier_element;
+		*next = copie_element(aux);
 
-		while(aux != NULL)
+		if(*next == NULL)
+		//echec partiel de la creation : seule une partie peut avoir été crée
 		{
-			*next = copie_element(aux);
-
-			if(*next == NULL)
-			//echec de la creation totale
-			{
-				return -1;
-			}
-
-			next = &(*next)->suivant;
-			aux = aux->suivant;
+			return -1;
 		}
+
+		next = &(*next)->suivant;
+		aux = aux->suivant;
 	}
 
 	return 0;
@@ -214,6 +219,37 @@ int suppr_noeud(listeChainee* liste, int indice)
 	*precedent = elem->suivant;
 
 	free(elem);
+
+	return 0;
+}
+
+int concatene_liste(listeChainee* liste1, listeChainee liste2) //NON FINI
+//VALEURS DE RETOUR :
+// 0 si la concatenation est réussie
+// -1 en cas d'echec : la fonction n'a rien effectuée
+{
+	listeChainee* copieListe2;
+	noeud* aux = &(liste1->premier_element);
+	int codeRetour
+
+	copieListe2 = (listeChainee*)malloc(sizeof(listeChainee));
+	codeRetour = copie_liste(liste2, copieListe2);
+
+	if(codeRetour == -1) //echec de la copie dans copieListe2
+	{
+		return -1;
+	}
+
+	//on cherche la fin de la 2e liste
+	while(*aux != NULL)
+	{
+		aux = &(*aux->suivant);
+	}
+
+	*aux = copieListe2->premier_element;
+	premier_element = NULL; //nécéssaire pour liberer l'espace memoire
+
+	detruire_liste_chainee(liste2);
 
 	return 0;
 }

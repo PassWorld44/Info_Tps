@@ -1,3 +1,11 @@
+/*
+TP 8-9
+Emile BONDU
+17/12/2021
+listes chainees
+cette en-tete (avec le .c lié) est indépendant et peut etre réutilisé
+*/
+
 #ifndef LISTE_CHAINEE
 #define LISTE_CHAINEE
 
@@ -31,5 +39,6 @@ int recherche_valeur(listeChainee liste, int valeur);
 noeud* acceder_element(listeChainee* liste, int indice);
 int insere_noeud(listeChainee* liste, int indice, noeud* element);
 int suppr_noeud(listeChainee* liste, int indice);
+int concatene_liste(listeChainee* liste1, listeChainee liste2);
 
 #endif
