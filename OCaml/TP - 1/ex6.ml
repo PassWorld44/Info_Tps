@@ -18,4 +18,8 @@ for i = 1 to 100 do
 	isSquare := false;
 done ;;
 
-(fun x -> fun y -> x*x + y*y) 2 1;;
+let diff f g =
+  let n = ref 0 in
+  	while abs(f !n - g !n) < 1 do
+  		incr n done;
+ 	n! ;;
