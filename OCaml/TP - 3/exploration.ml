@@ -235,3 +235,5 @@ mat_4.(0).(0)<-(0,0);;
 mat_4;;
 
 mat_4.(0) == mat_4.(1);; (* TRUE ??? *)
+(* les valeurs sont partagées *)
+
