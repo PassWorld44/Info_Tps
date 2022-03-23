@@ -120,3 +120,9 @@ let l_1 = List.map (function x -> x*x)[1;2;3;4];;
 
 let a = List.length [1;2;3;4];;
 
+let rec somme liste =
+	match liste with
+	| [] -> 0
+	| x :: r -> x + somme r ;;
+let liste = [1;2;3];;
+let s = somme liste;;
