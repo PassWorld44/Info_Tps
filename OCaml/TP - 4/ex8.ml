@@ -5,4 +5,8 @@ avant dernier element d'une liste chainee
 *)
 
 let rec avant_dernier a = 
+if List.length a <= 1 then
+	failwith "liste de taille insuffisante"
+else
+	List.nth a (List.length a - 2);;
 	
