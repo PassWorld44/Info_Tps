@@ -8,4 +8,4 @@ mise a plat d'une liste
 let rec flat f = 
 	match f with
 	| [] -> []
-	| x :: p  -> x@(flat_rec p)
+	| x :: p  -> x@(flat p);;

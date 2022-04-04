@@ -4,13 +4,13 @@ minimum d'une liste
 01/04/2022
 *)
 
-let oscmin l =
-let rec oscrec l t=
+let ocsmin l =
+let rec ocsrec l tuple =
 	match l with
-	| [] -> t
-	| x :: p -> match t with
-				| (x, _) -> oscrec p (x, t.second + 1)
-				| (y, z) when y < x || z = 0 -> oscrec p (y, 1)
-				| _ -> oscrec p t
+	| [] -> tuple
+	| x :: p -> match tuple with
+				| (y, z) when y = x -> ocsrec p (y, z + 1)
+				| (y, z) when x < y || z = 0 -> ocsrec p (x, 1)
+				| _ -> ocsrec p tuple
 in
-oscrec l (0, 0);;
+ocsrec l (0, 0);;
