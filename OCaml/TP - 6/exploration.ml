@@ -112,3 +112,23 @@ let l2 = Cons (1, Cons(2, Cons(3, NIL)));;
 l1;; (* val l1 : liste = Cons (1, NIL) *)
 l2;; (* val l2 : liste = Cons (1, Cons (2, Cons (3, NIL)) *)
 
+let rec longeur l =
+match l with
+| NIL -> 0
+| Cons (x, q) -> 1 + longeur q ;;
+
+longeur l1;;
+longeur l2;;
+
+type 'a liste = 
+| NIL 
+| Cons of 'a * 'a liste;;
+(* polymorphique car type inféré plus tard *)
+
+let l1 = Cons("Bonjour", NIL);;
+(* val l1 : string liste = Cons ("Bonjour", NIL) *)
+let l2 = Cons(1, Cons(2, Cons(3, NIL)));;
+(* val l2 : int liste = Cons (1, Cons (2, Cons (3, NIL)) *)
+let l3 = Cons(1, Cons("Bonjour", Cons(3.14, NIL)));;
+(* non possible car une liste reste d'un type unique *)
+
