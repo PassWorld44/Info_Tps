@@ -4,8 +4,8 @@ Emile BONDU
 Arbre binaire de recherche
 */
 
-#ifndef ARBRE_RECHERCHE
-#define ARBRE_RECHERCHE
+#ifndef ARBRE_RECHERCHE_H
+#define ARBRE_RECHERCHE_H
 
 #include <stdio.h>
 #include <stdlib.h>

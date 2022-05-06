@@ -60,6 +60,23 @@ int taille_tas(Tas t)
 	return t.tab[0].cle;
 }
 
+Noeud max_tas(Tas t)
+//retourne le 1er element du tas
+{
+	assert(t.tab != NULL && 
+		"max_tas : le tas donné n'a pas de tableau lié");
+	assert(taille_tas(t) >= 1 &&
+		"max-tas : le tas donné est vide");
+
+	return t.tab[0];
+}
+
+int cle_max_tas(Tas t)
+//retourne la cle du 1er element du tas
+{
+	return max_tas(t).cle;
+}
+
 void echanger(Tas t, int i1, int i2)
 //échange deux elements d'un tas
 {
@@ -75,7 +92,6 @@ void echanger(Tas t, int i1, int i2)
 	t.tab[i1].elem = t.tab[i2].elem;
 	t.tab[i2].elem = temp2;
 }
-
 
 void affiche_tas(Tas t)
 //affichage par ligne
@@ -220,6 +236,40 @@ int* tri_par_tas(int *tab, int taille)
 	return tas_get_tab_cle(t);
 }
 
+Noeud extraire_max_tas(Tas t)
+//extrait la tete du tas
+{
+	assert(t.tab != NULL && 
+		"extraire_max_tas : le tas donné n'a pas de tableau lié");
+	
+	Noeud n = tete_tas(t);
+
+	t.tab[1] = t.tab[taille_tas(t)];
+	entasser_max(t, 1);
+
+	t.tab[0]--; //on reduit la taille
+
+	return n;
+}
+
+void eugmenter_cle_tas(Tas t, int i, int ncle)
+//augmente la valeur de la cle liée a l'indice donné
+//assert si la cle est inferieure ; ne peut faire baisser
+//	l'indice de cette cle
+{
+	assert(t.tab != NULL && 
+		"eugmenter_cle_tas : le tas donné n'a pas de tableau lié");
+	assert(taille_tas(t) >= i &&
+		"eugmenter_cle_tas : l'indice donné est inferieur a la taille du tableau");
+	assert(ncle >= t.tab[i].cle &&
+		"eugmenter_cle_tas : la cle donnée est inferieure a celle de base");
+	
+	if(ncle > t.tab[i].cle)
+	{
+		t.tab[i].cle = ncle;
+		
+	}
+}
 
 int main()
 {

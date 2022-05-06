@@ -4,8 +4,8 @@ Emile BONDU
 listes chainees
 */
 
-#ifndef LISTE_CHAINEE
-#define LISTE_CHAINEE
+#ifndef LISTE_CHAINEE_H
+#define LISTE_CHAINEE_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -64,10 +64,13 @@ int insere_noeud(listeChainee* liste, int indice, noeud* element);
 int suppr_noeud(listeChainee* liste, int indice);
 //val de retour : -1 si l'insertion a echouee
 //				  0 si l'insertion a ete effectuee avec succes
+
+/*
 int concatene_liste(listeChainee* liste1, listeChainee liste2);
 //VALEURS DE RETOUR :
 // 0 si la concatenation est réussie
 // -1 en cas d'echec : la fonction n'a rien effectuée
+*/
 
 void tests_unitaire_liste_chainee();
 

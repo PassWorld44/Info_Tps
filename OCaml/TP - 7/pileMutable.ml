@@ -1,37 +1,31 @@
 (*
 Emile BONDU
-arbres
-29/04/2022
+pile mutable
+06/04/2022
 *)
 
-type arbre =
-| Vide
-| Noeud of arbre * int * arbre;;
+type 'a file = {mutable contenu : 'a list};;
 
-(* exemple *)
+let fileVide = 
+{contenu = []};;
 
-let abr1 = 
-Noeud(
-	Noeud(
-		Noeud(
-			Noeud(
-				Vide, 21, 
-				Noeud(Vide, 23, Vide)
-			),
-			27, Vide
-		),
-		63,
-		Noeud(
-			Noeud(
-			Vide, 68, Noeud(Vide, 68, Vide)
-			),
-			71,
-			Noeud(Vide, 79; vide)
-		)
-	),
-	145,
-	Noeud(
-		Noeud(Vide, 171, Vide),
-		190, Vide
-	)
-)
+let estVide l = 
+match l.contenu with
+| [] -> true
+| a::p -> false
+;;
+
+let enfile elt l =
+l.contenu <- elt :: l.contenu;;
+
+let defile l =
+match l.contenu with
+| [] -> failwith("liste donnee vide")
+| a::p -> l.contenu <- p
+;;
+
+let tete l =
+match l.contenu with
+| [] -> failwith("liste donnee vide")
+| a::p -> a
+;;

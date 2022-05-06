@@ -221,6 +221,7 @@ int suppr_noeud(listeChainee* liste, int indice)
 	return 0;
 }
 
+/*
 int concatene_liste(listeChainee* liste1, listeChainee liste2) //NON FINI
 //VALEURS DE RETOUR :
 // 0 si la concatenation est réussie
@@ -251,6 +252,7 @@ int concatene_liste(listeChainee* liste1, listeChainee liste2) //NON FINI
 
 	return 0;
 }
+*/
 
 void tests_unitaire_liste_chainee()
 {
